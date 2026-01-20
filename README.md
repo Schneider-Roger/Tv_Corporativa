@@ -1,20 +1,17 @@
 # TV Corporativa
 
-Sistema de TV Corporativa para comunicação interna em empresas privadas.
+Sistema de TV Corporativa para comunicação interna (RH, avisos, metas e KPIs).
 
-## Objetivo
-Exibição de conteúdos institucionais, avisos de RH, metas e KPIs em TVs distribuídas por setores da empresa.
-
-## Estrutura do Projeto
-- backend/ → API e regras de negócio
-- admin/ → Painel administrativo (Web)
-- player/ → Player Web (Android Box / Smart TV)
+## Módulos
+- **backend/**: API (Node.js + Express) e regras de negócio
+- **admin/**: Painel administrativo (Web)
+- **player/**: Player Web/PWA para Android Box/Smart TV
 
 ## Tecnologias
 - Node.js + Express
-- MySQL
-- HTML, CSS, JavaScript
-- PWA para o player
+- MySQL 8
+- HTML/CSS/JS (admin e player)
+- PWA (cache offline e sincronização)
 
 ## Status
-🚧 Em desenvolvimento (MVP)
+MVP em desenvolvimento.

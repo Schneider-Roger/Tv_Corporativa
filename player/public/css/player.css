@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  background: black;
+  color: white;
+  overflow: hidden;
+}
+
+#main {
+  width: 75%;
+  height: 100vh;
+  float: left;
+}
+
+#kpis {
+  width: 25%;
+  height: 90vh;
+  float: right;
+  background: #111;
+}
+
+#ticker {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 10vh;
+  background: #222;
+}
