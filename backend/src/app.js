@@ -1,13 +1,14 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+
+const healthRoutes = require("./config/routes/health.routes"); // se já existir no seu projeto
+const setoresRoutes = require("./routes/setores.routes");
 
 const app = express();
 
-app.use(cors());
 app.use(express.json());
 
-app.get('/health', (req, res) => {
-  res.json({ status: 'OK', service: 'TV Corporativa API' });
-});
+// Rotas
+app.use("/health", healthRoutes);
+app.use("/api/setores", setoresRoutes);
 
 module.exports = app;
