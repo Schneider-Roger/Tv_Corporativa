@@ -1,0 +1,61 @@
+.devices-status {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.status-card {
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 10px;
+  padding: 14px 18px;
+  min-width: 140px;
+}
+
+.status-card span {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.status-card strong {
+  display: block;
+  font-size: 26px;
+  margin-top: 4px;
+  color: #e5e7eb;
+}
+
+.status-card.online {
+  border-color: #14532d;
+  background: #052e16;
+}
+
+.status-card.offline {
+  border-color: #7f1d1d;
+  background: #450a0a;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #1f2937;
+  background: #020617;
+  color: #e5e7eb;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge.online {
+  background: #14532d;
+  color: #bbf7d0;
+}
+
+.badge.offline {
+  background: #7f1d1d;
+  color: #fecaca;
+}

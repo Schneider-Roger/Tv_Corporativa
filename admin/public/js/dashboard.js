@@ -1,82 +1,127 @@
 (function () {
+  const token = localStorage.getItem("tv_admin_token");
+  if (!token) { window.location.href = "login.html"; return; }
+
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  // Proteção simples (mock). Depois substituímos por JWT real.
-  const token = localStorage.getItem("tv_admin_token");
-  if (!token) {
-    window.location.href = "login.html";
-    return;
-  }
-
-  const btnLogout = document.getElementById("btnLogout");
-  btnLogout.addEventListener("click", () => {
+  document.getElementById("btnLogout").addEventListener("click", () => {
     localStorage.removeItem("tv_admin_token");
     localStorage.removeItem("tv_admin_email");
     window.location.href = "login.html";
   });
 
+  const API_BASE = "http://localhost:3000";
+  const endpoints = {
+    health: `${API_BASE}/api/health`,
+    setores: `${API_BASE}/api/setores`,
+    unidades: `${API_BASE}/api/unidades`,
+    playlists: `${API_BASE}/api/playlists`,
+    devices: `${API_BASE}/api/devices`
+  };
+
   const apiDot = document.getElementById("apiDot");
   const apiStatusText = document.getElementById("apiStatusText");
 
-  const cardApiStatus = document.getElementById("cardApiStatus");
-  const cardApiSub = document.getElementById("cardApiSub");
-  const cardEnv = document.getElementById("cardEnv");
-  const cardLastCheck = document.getElementById("cardLastCheck");
+  const kpiSetores = document.getElementById("kpiSetores");
+  const kpiUnidades = document.getElementById("kpiUnidades");
+  const kpiPlaylists = document.getElementById("kpiPlaylists");
+  const kpiDevices = document.getElementById("kpiDevices");
+  const kpiOnline = document.getElementById("kpiOnline");
 
-  const API_BASE = "http://localhost:3000"; // ajuste depois (ex.: via config)
-  const HEALTH_URL = `${API_BASE}/api/health`;
+  const devicesTbody = document.getElementById("devicesTbody");
+  const devicesSub = document.getElementById("devicesSub");
 
-  function setStatus(ok, text, sub) {
+  const sysApi = document.getElementById("sysApi");
+  const sysBase = document.getElementById("sysBase");
+  const sysUpdated = document.getElementById("sysUpdated");
+  const btnRefresh = document.getElementById("btnRefresh");
+
+  function setApiStatus(ok) {
     apiDot.classList.remove("ok", "err");
     apiDot.classList.add(ok ? "ok" : "err");
-
-    apiStatusText.textContent = text;
-    cardApiStatus.textContent = ok ? "Online" : "Offline";
-    cardApiSub.textContent = sub || "—";
+    apiStatusText.textContent = ok ? "API online" : "API offline";
+    sysApi.textContent = ok ? "Online" : "Offline";
   }
 
-  function setLastCheck() {
-    const now = new Date();
-    cardLastCheck.textContent = now.toLocaleTimeString("pt-BR", {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    });
+  function escapeHtml(s) {
+    return String(s ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
   }
 
-  async function checkHealth() {
-    setLastCheck();
+  function isOnline(lastHeartbeat) {
+    if (!lastHeartbeat) return false;
+    const t = new Date(lastHeartbeat).getTime();
+    if (Number.isNaN(t)) return false;
+    return ((Date.now() - t) / 1000) <= 60;
+  }
+
+  async function fetchJson(url) {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  }
+
+  async function load() {
+    sysBase.textContent = API_BASE;
+    sysUpdated.textContent = "Carregando...";
 
     try {
-      const res = await fetch(HEALTH_URL, { method: "GET" });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const health = await fetchJson(endpoints.health);
+      setApiStatus(Boolean(health?.ok));
+    } catch {
+      setApiStatus(false);
+      sysUpdated.textContent = new Date().toLocaleString();
+      return;
+    }
 
-      // Seu health pode retornar texto ou json; tentamos os dois
-      let data = null;
-      const ct = res.headers.get("content-type") || "";
-      if (ct.includes("application/json")) {
-        data = await res.json();
+    try {
+      const [setores, unidades, playlists, devices] = await Promise.all([
+        fetchJson(endpoints.setores),
+        fetchJson(endpoints.unidades),
+        fetchJson(endpoints.playlists),
+        fetchJson(endpoints.devices),
+      ]);
+
+      kpiSetores.textContent = Array.isArray(setores) ? setores.length : "0";
+      kpiUnidades.textContent = Array.isArray(unidades) ? unidades.length : "0";
+      kpiPlaylists.textContent = Array.isArray(playlists) ? playlists.length : "0";
+      kpiDevices.textContent = Array.isArray(devices) ? devices.length : "0";
+
+      const online = (Array.isArray(devices) ? devices : []).filter((d) => isOnline(d.ultimo_heartbeat)).length;
+      kpiOnline.textContent = String(online);
+
+      const recent = (Array.isArray(devices) ? devices : []).slice(0, 8);
+      devicesSub.textContent = `Mostrando ${recent.length} de ${Array.isArray(devices) ? devices.length : 0}`;
+
+      if (!recent.length) {
+        devicesTbody.innerHTML = `<tr><td colspan="4" class="td-muted">Nenhum device cadastrado.</td></tr>`;
       } else {
-        data = await res.text();
+        devicesTbody.innerHTML = recent.map((d) => {
+          const on = isOnline(d.ultimo_heartbeat);
+          return `
+            <tr>
+              <td>${escapeHtml(d.id)}</td>
+              <td><strong>${escapeHtml(d.nome || "—")}</strong></td>
+              <td>${escapeHtml(d.device_key)}</td>
+              <td>${on ? `<span class="badge ok">Online</span>` : `<span class="badge off">Offline</span>`}</td>
+            </tr>
+          `;
+        }).join("");
       }
 
-      // Tentativa de detectar env no payload (se existir)
-      const env =
-        (data && typeof data === "object" && (data.env || data.NODE_ENV)) ||
-        "—";
-
-      cardEnv.textContent = env;
-
-      setStatus(true, "API online", `GET ${HEALTH_URL}`);
+      sysUpdated.textContent = new Date().toLocaleString();
     } catch (err) {
-      console.error("Health check falhou:", err);
-      cardEnv.textContent = "—";
-      setStatus(false, "API offline", `Falha em ${HEALTH_URL}`);
+      console.error(err);
+      sysUpdated.textContent = new Date().toLocaleString();
     }
   }
 
-  // Primeira checagem + interval
-  checkHealth();
-  setInterval(checkHealth, 15000);
+  btnRefresh.addEventListener("click", load);
+
+  load();
 })();

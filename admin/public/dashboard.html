@@ -4,10 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin • Dashboard</title>
+
+  <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/dashboard.css" />
 </head>
-<body class="admin-body">
 
+<body class="admin-body">
   <aside class="sidebar">
     <div class="sidebar-brand">
       <div class="brand-title">TV Corporativa</div>
@@ -45,42 +47,85 @@
     </header>
 
     <main class="content">
-      <section class="grid grid-3">
-        <article class="card">
-          <div class="card-title">Status da API</div>
-          <div class="card-value" id="cardApiStatus">—</div>
-          <div class="card-sub" id="cardApiSub">—</div>
-        </article>
+      <section class="kpis">
+        <div class="kpi-card">
+          <div class="kpi-label">Setores</div>
+          <div class="kpi-value" id="kpiSetores">—</div>
+        </div>
 
-        <article class="card">
-          <div class="card-title">Ambiente</div>
-          <div class="card-value" id="cardEnv">—</div>
-          <div class="card-sub">NODE_ENV</div>
-        </article>
+        <div class="kpi-card">
+          <div class="kpi-label">Unidades</div>
+          <div class="kpi-value" id="kpiUnidades">—</div>
+        </div>
 
-        <article class="card">
-          <div class="card-title">Última verificação</div>
-          <div class="card-value" id="cardLastCheck">—</div>
-          <div class="card-sub">Horário local</div>
-        </article>
+        <div class="kpi-card">
+          <div class="kpi-label">Playlists</div>
+          <div class="kpi-value" id="kpiPlaylists">—</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">Devices</div>
+          <div class="kpi-value" id="kpiDevices">—</div>
+        </div>
+
+        <div class="kpi-card highlight">
+          <div class="kpi-label">Online (60s)</div>
+          <div class="kpi-value" id="kpiOnline">—</div>
+        </div>
       </section>
 
-      <section class="card mt-16">
-        <div class="card-header">
-          <div>
-            <div class="card-title">Resumo</div>
-            <div class="card-sub">Atalhos para começar</div>
+      <section class="grid-2 mt-16">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Devices recentes</div>
+              <div class="card-sub" id="devicesSub">—</div>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Device Key</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="devicesTbody">
+                <tr><td colspan="4" class="td-muted">Carregando...</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
-        <div class="actions">
-          <a class="btn btn-primary" href="setores.html">Gerenciar Setores</a>
-          <a class="btn btn-secondary" href="unidades.html">Gerenciar Unidades</a>
-          <a class="btn btn-secondary" href="midias.html">Enviar Mídias</a>
-        </div>
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Sistema</div>
+              <div class="card-sub">Diagnóstico rápido</div>
+            </div>
+          </div>
 
-        <div class="note">
-          Dica: nesta fase, vamos evoluir página por página. Primeiro listagens (setores/unidades) e depois upload + playlists.
+          <div class="sys-list">
+            <div class="sys-item">
+              <span class="sys-key">API</span>
+              <span class="sys-val" id="sysApi">—</span>
+            </div>
+            <div class="sys-item">
+              <span class="sys-key">Base URL</span>
+              <span class="sys-val" id="sysBase">—</span>
+            </div>
+            <div class="sys-item">
+              <span class="sys-key">Última atualização</span>
+              <span class="sys-val" id="sysUpdated">—</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button id="btnRefresh" class="btn btn-secondary">Atualizar</button>
+          </div>
         </div>
       </section>
     </main>

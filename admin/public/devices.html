@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin • Devices</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/devices.css" />
+</head>
+
+<body class="admin-body">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-title">TV Corporativa</div>
+      <div class="brand-subtitle">Painel Admin</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
+      <a href="setores.html" class="nav-link">Setores</a>
+      <a href="unidades.html" class="nav-link">Unidades</a>
+      <a href="playlists.html" class="nav-link">Playlists</a>
+      <a href="devices.html" class="nav-link active">Devices</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button id="btnLogout" class="btn btn-ghost">Sair</button>
+      <small class="muted">© <span id="year"></span></small>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div>
+        <h1 class="page-title">Devices</h1>
+        <div class="breadcrumb">Gerenciamento de TVs e players</div>
+      </div>
+
+      <div class="topbar-actions">
+        <button id="btnRefresh" class="btn btn-secondary">Atualizar</button>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="content">
+
+      <!-- STATUS -->
+      <section class="devices-status">
+        <div class="status-card">
+          <span>Total</span>
+          <strong id="totalDevices">0</strong>
+        </div>
+        <div class="status-card online">
+          <span>Online</span>
+          <strong id="onlineDevices">0</strong>
+        </div>
+        <div class="status-card offline">
+          <span>Offline</span>
+          <strong id="offlineDevices">0</strong>
+        </div>
+      </section>
+
+      <!-- TABLE -->
+      <section class="card">
+        <div class="card-header">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Buscar por nome ou device key..."
+            class="input"
+          />
+        </div>
+
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Device Key</th>
+                <th>Status</th>
+                <th>Último Heartbeat</th>
+              </tr>
+            </thead>
+            <tbody id="devicesTable">
+              <tr>
+                <td colspan="5" class="td-muted">Carregando devices...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="js/devices.js"></script>
+</body>
+</html>

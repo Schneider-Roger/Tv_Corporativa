@@ -212,3 +212,72 @@
 .dot.err {
   background: rgba(255, 77, 79, 0.95);
 }
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.kpi-card {
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.kpi-card.highlight {
+  border-color: #334155;
+  background: #0f172a;
+}
+
+.kpi-label {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-bottom: 6px;
+  letter-spacing: .2px;
+}
+
+.kpi-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #e5e7eb;
+  line-height: 1.1;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+}
+
+.sys-list {
+  padding: 10px 12px;
+}
+
+.sys-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #1f2937;
+}
+
+.sys-item:last-child {
+  border-bottom: none;
+}
+
+.sys-key {
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.sys-val {
+  color: #e5e7eb;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+@media (max-width: 1100px) {
+  .kpis { grid-template-columns: repeat(2, 1fr); }
+  .grid-2 { grid-template-columns: 1fr; }
+}
