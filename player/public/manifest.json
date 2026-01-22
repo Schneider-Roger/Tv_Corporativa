@@ -1,0 +1,9 @@
+{
+  "name": "TV Corporativa",
+  "short_name": "TV",
+  "start_url": "/",
+  "display": "fullscreen",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": []
+}

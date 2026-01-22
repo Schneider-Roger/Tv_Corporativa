@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin • Dashboard</title>
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body class="admin-body">
+
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-title">TV Corporativa</div>
+      <div class="brand-subtitle">Painel Admin</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-link active" href="dashboard.html">Dashboard</a>
+      <a class="nav-link" href="setores.html">Setores</a>
+      <a class="nav-link" href="unidades.html">Unidades</a>
+      <a class="nav-link" href="midias.html">Mídias</a>
+      <a class="nav-link" href="playlists.html">Playlists</a>
+      <a class="nav-link" href="devices.html">Devices</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button id="btnLogout" class="btn btn-ghost">Sair</button>
+      <small class="muted">© <span id="year"></span></small>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="page-title">Dashboard</h1>
+        <div class="breadcrumb">Visão geral do sistema</div>
+      </div>
+
+      <div class="topbar-right">
+        <div class="pill">
+          <span class="dot" id="apiDot"></span>
+          <span id="apiStatusText">Verificando API...</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="grid grid-3">
+        <article class="card">
+          <div class="card-title">Status da API</div>
+          <div class="card-value" id="cardApiStatus">—</div>
+          <div class="card-sub" id="cardApiSub">—</div>
+        </article>
+
+        <article class="card">
+          <div class="card-title">Ambiente</div>
+          <div class="card-value" id="cardEnv">—</div>
+          <div class="card-sub">NODE_ENV</div>
+        </article>
+
+        <article class="card">
+          <div class="card-title">Última verificação</div>
+          <div class="card-value" id="cardLastCheck">—</div>
+          <div class="card-sub">Horário local</div>
+        </article>
+      </section>
+
+      <section class="card mt-16">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Resumo</div>
+            <div class="card-sub">Atalhos para começar</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="setores.html">Gerenciar Setores</a>
+          <a class="btn btn-secondary" href="unidades.html">Gerenciar Unidades</a>
+          <a class="btn btn-secondary" href="midias.html">Enviar Mídias</a>
+        </div>
+
+        <div class="note">
+          Dica: nesta fase, vamos evoluir página por página. Primeiro listagens (setores/unidades) e depois upload + playlists.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin • Editor de Playlist</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="admin-body">
+
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-title">TV Corporativa</div>
+      <div class="brand-subtitle">Painel Admin</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-link" href="dashboard.html">Dashboard</a>
+      <a class="nav-link" href="setores.html">Setores</a>
+      <a class="nav-link" href="unidades.html">Unidades</a>
+      <a class="nav-link" href="midias.html">Mídias</a>
+      <a class="nav-link active" href="playlists.html">Playlists</a>
+      <a class="nav-link" href="devices.html">Devices</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button id="btnLogout" class="btn btn-ghost">Sair</button>
+      <small class="muted">© <span id="year"></span></small>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="page-title" id="title">Editor</h1>
+        <div class="breadcrumb"><a class="link" href="playlists.html">← Voltar</a></div>
+      </div>
+      <div class="topbar-right">
+        <div class="pill">
+          <span class="dot" id="apiDot"></span>
+          <span id="apiStatusText">Verificando API...</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Adicionar item</div>
+            <div class="card-sub">Selecione uma mídia e defina duração (para imagem/pdf)</div>
+          </div>
+        </div>
+
+        <form id="formAdd" class="form-row">
+          <select id="mediaSelect" class="form-input"></select>
+          <input id="duracao" class="form-input" type="number" min="1" value="10" placeholder="Duração (seg)" />
+          <button id="btnAdd" class="btn btn-primary" type="submit">Adicionar</button>
+          <button id="btnRefresh" class="btn btn-secondary" type="button">Atualizar</button>
+        </form>
+
+        <div id="msg" class="table-msg" aria-live="polite"></div>
+      </section>
+
+      <section class="card mt-16">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Itens</div>
+            <div class="card-sub" id="subTotal">Carregando...</div>
+          </div>
+
+          <div class="row-actions">
+            <button id="btnSaveOrder" class="btn btn-secondary">Salvar ordem</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table" aria-label="Tabela de itens">
+            <thead>
+              <tr>
+                <th style="width: 80px;">Ordem</th>
+                <th>Arquivo</th>
+                <th style="width: 90px;">Tipo</th>
+                <th style="width: 140px;">Duração</th>
+                <th style="width: 220px;">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tbody">
+              <tr><td colspan="5" class="td-muted">Carregando...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="tableMsg" class="table-msg" aria-live="polite"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/playlist-editor.js"></script>
+</body>
+</html>

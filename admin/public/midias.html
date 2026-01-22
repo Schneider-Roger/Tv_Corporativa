@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin • Mídias</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/midias.css" />
+</head>
+<body class="admin-body">
+
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-title">TV Corporativa</div>
+      <div class="brand-subtitle">Painel Admin</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-link" href="dashboard.html">Dashboard</a>
+      <a class="nav-link" href="setores.html">Setores</a>
+      <a class="nav-link" href="unidades.html">Unidades</a>
+      <a class="nav-link active" href="midias.html">Mídias</a>
+      <a class="nav-link" href="playlists.html">Playlists</a>
+      <a class="nav-link" href="devices.html">Devices</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button id="btnLogout" class="btn btn-ghost">Sair</button>
+      <small class="muted">© <span id="year"></span></small>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="page-title">Mídias</h1>
+        <div class="breadcrumb">Upload, visualização e remoção</div>
+      </div>
+
+      <div class="topbar-right">
+        <div class="pill">
+          <span class="dot" id="apiDot"></span>
+          <span id="apiStatusText">Verificando API...</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Enviar mídia</div>
+            <div class="card-sub">Imagens e vídeos</div>
+          </div>
+        </div>
+
+        <form id="uploadForm" class="upload-form">
+          <input id="fileInput" class="file-input" type="file" accept="image/*,video/*,application/pdf" />
+          <button id="btnUpload" class="btn btn-primary" type="submit">Enviar</button>
+          <button id="btnReload" class="btn btn-secondary" type="button">Atualizar lista</button>
+        </form>
+
+        <div id="uploadMsg" class="table-msg" aria-live="polite"></div>
+      </section>
+
+      <section class="card mt-16">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Arquivos</div>
+            <div class="card-sub" id="subTotal">Carregando...</div>
+          </div>
+
+          <div class="tools">
+            <input id="searchInput" class="table-search" type="search" placeholder="Pesquisar por nome..." autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table" aria-label="Tabela de mídias">
+            <thead>
+              <tr>
+                <th>Arquivo</th>
+                <th style="width: 120px;">Tamanho</th>
+                <th style="width: 200px;">Modificado</th>
+                <th style="width: 170px;">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyMidias">
+              <tr><td colspan="4" class="td-muted">Carregando...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="tableMsg" class="table-msg" aria-live="polite"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="js/midias.js"></script>
+</body>
+</html>

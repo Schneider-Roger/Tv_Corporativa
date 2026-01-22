@@ -1,0 +1,62 @@
+/* =========================
+   MÍDIAS
+========================= */
+
+.upload-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.file-input {
+  flex: 1;
+  min-width: 260px;
+  height: 40px;
+  padding: 6px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.12);
+  color: rgba(255,255,255,0.92);
+}
+
+.file-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.file-name {
+  font-weight: 700;
+  word-break: break-word;
+}
+
+.file-link {
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+  text-decoration: underline;
+}
+
+.row-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.btn-sm {
+  height: 36px;
+  padding: 0 10px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.btn-danger {
+  background: rgba(255, 77, 79, 0.85);
+  color: #fff;
+}
+
+.table-msg.ok { color: rgba(46, 204, 113, 0.95); }
+.table-msg.error { color: rgba(255, 77, 79, 0.95); }

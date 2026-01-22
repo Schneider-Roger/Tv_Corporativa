@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin • Login</title>
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+<body class="auth-body">
+  <main class="auth-container">
+    <section class="auth-card">
+      <header class="auth-header">
+        <h1 class="auth-title">TV Copercana</h1>
+        <p class="auth-subtitle"></p>
+      </header>
+
+      <form id="loginForm" class="auth-form" autocomplete="on" novalidate>
+        <div class="form-group">
+          <label for="email" class="form-label">E-mail</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            class="form-input"
+            placeholder="seuemail@empresa.com"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="senha" class="form-label">Senha</label>
+          <input
+            id="senha"
+            name="senha"
+            type="password"
+            class="form-input"
+            placeholder="••••••••"
+            required
+            minlength="6"
+          />
+        </div>
+
+        <button id="btnLogin" type="submit" class="btn btn-primary">
+          Entrar
+        </button>
+
+        <div id="loginMsg" class="form-msg" aria-live="polite"></div>
+      </form>
+
+      <footer class="auth-footer">
+        <small>© <span id="year"></span> TV Copercana</small>
+      </footer>
+    </section>
+  </main>
+
+  <script src="js/login.js"></script>
+</body>
+</html>

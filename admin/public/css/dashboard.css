@@ -100,6 +100,15 @@
   padding: 18px 22px;
 }
 
+.grid {
+  display: grid;
+  gap: 14px;
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 @media (max-width: 980px) {
   .admin-body {
     grid-template-columns: 1fr;
@@ -107,105 +116,10 @@
   .sidebar {
     grid-template-rows: auto;
   }
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
 }
-
-/* =========================
-   TABLE / LIST
-========================= */
-
-.tools {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.table-search {
-  height: 40px;
-  padding: 0 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(0,0,0,0.12);
-  color: rgba(255,255,255,0.92);
-  outline: none;
-  width: min(420px, 52vw);
-}
-
-.table-search:focus {
-  border-color: rgba(47, 107, 255, 0.7);
-  box-shadow: 0 0 0 4px rgba(47, 107, 255, 0.15);
-}
-
-.table-wrap {
-  width: 100%;
-  overflow: auto;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 900px;
-  background: rgba(0,0,0,0.10);
-}
-
-.table th,
-.table td {
-  padding: 12px 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  text-align: left;
-  vertical-align: top;
-}
-
-.table th {
-  font-size: 12px;
-  color: rgba(255,255,255,0.65);
-  font-weight: 700;
-  background: rgba(0,0,0,0.16);
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-
-.table td {
-  font-size: 13px;
-  color: rgba(255,255,255,0.88);
-}
-
-.td-muted {
-  color: rgba(255,255,255,0.65);
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-  border: 1px solid rgba(255,255,255,0.10);
-}
-
-.badge.ok {
-  background: rgba(46, 204, 113, 0.18);
-  border-color: rgba(46, 204, 113, 0.35);
-}
-
-.badge.off {
-  background: rgba(255, 77, 79, 0.15);
-  border-color: rgba(255, 77, 79, 0.35);
-}
-
-.table-msg {
-  margin-top: 10px;
-  font-size: 13px;
-  color: rgba(255,255,255,0.70);
-}
-
-/* =========================
-   CARDS & COMPONENTS
-========================= */
 
 .card {
   background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
@@ -259,7 +173,7 @@
   padding-top: 12px;
 }
 
-/* Botões */
+/* Botões do painel (reaproveita os do login) */
 .btn-ghost {
   background: transparent;
   color: rgba(255,255,255,0.85);
@@ -297,32 +211,4 @@
 }
 .dot.err {
   background: rgba(255, 77, 79, 0.95);
-}
-
-/* =========================
-   FORMS / LINKS
-========================= */
-
-.form-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-}
-
-.form-row .form-input {
-  flex: 1;
-  min-width: 220px;
-}
-
-.link {
-  color: rgba(255,255,255,0.75);
-  text-decoration: underline;
-}
-
-@media (max-width: 980px) {
-  .form-row .form-input {
-    width: 100%;
-    min-width: 100%;
-  }
 }

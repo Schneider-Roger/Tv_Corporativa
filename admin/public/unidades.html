@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin • Unidades</title>
+<link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/unidades.css" />
+</head>
+<body class="admin-body">
+
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-title">TV Corporativa</div>
+      <div class="brand-subtitle">Painel Admin</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-link" href="dashboard.html">Dashboard</a>
+      <a class="nav-link" href="setores.html">Setores</a>
+      <a class="nav-link active" href="unidades.html">Unidades</a>
+      <a class="nav-link" href="midias.html">Mídias</a>
+      <a class="nav-link" href="playlists.html">Playlists</a>
+      <a class="nav-link" href="devices.html">Devices</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button id="btnLogout" class="btn btn-ghost">Sair</button>
+      <small class="muted">© <span id="year"></span></small>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="page-title">Unidades</h1>
+        <div class="breadcrumb">Cadastro e consulta</div>
+      </div>
+
+      <div class="topbar-right">
+        <div class="pill">
+          <span class="dot" id="apiDot"></span>
+          <span id="apiStatusText">Verificando API...</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Lista de unidades</div>
+            <div class="card-sub" id="subTotal">Carregando...</div>
+          </div>
+
+          <div class="tools">
+            <input
+              id="searchInput"
+              class="table-search"
+              type="search"
+              placeholder="Pesquisar por nome, descrição ou ID..."
+              autocomplete="off"
+            />
+            <button id="btnReload" class="btn btn-secondary">Atualizar</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table" aria-label="Tabela de unidades">
+            <thead>
+              <tr>
+                <th style="width: 80px;">ID</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th style="width: 110px;">Ativo</th>
+                <th style="width: 180px;">Criado em</th>
+                <th style="width: 180px;">Atualizado em</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyUnidades">
+              <tr>
+                <td colspan="6" class="td-muted">Carregando...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="tableMsg" class="table-msg" aria-live="polite"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/unidades.js"></script>
+</body>
+</html>

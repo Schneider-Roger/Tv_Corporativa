@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const { listarSetores } = require("../controllers/setores.controller");
+const setoresController = require("../controllers/setores.controller");
 
-router.get("/", listarSetores);
+// GET /api/setores
+router.get("/", setoresController.listarSetores);
 
 module.exports = router;
