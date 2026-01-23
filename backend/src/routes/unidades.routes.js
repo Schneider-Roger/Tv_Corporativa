@@ -9,4 +9,7 @@ router.get("/", unidadesController.listarUnidades);
 // POST /api/unidades
 router.post("/", unidadesController.criarUnidade);
 
+// DELETE /api/unidades/:id
+router.delete("/:id", unidadesController.deletarUnidade);
+
 module.exports = router;

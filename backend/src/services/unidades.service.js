@@ -21,4 +21,10 @@ async function criarUnidade(payload) {
   return result.insertId;
 }
 
-module.exports = { listarUnidades, criarUnidade };
+async function deletarUnidade(id) {
+  const sql = `DELETE FROM unidades WHERE id = ?`;
+  const [result] = await db.query(sql, [id]);
+  return result.affectedRows > 0;
+}
+
+module.exports = { listarUnidades, criarUnidade, deletarUnidade };

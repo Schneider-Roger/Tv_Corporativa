@@ -169,7 +169,7 @@
 
   function renderRows(rows) {
     if (!rows.length) {
-      tbody.innerHTML = `<tr><td colspan="8" class="td-muted">Nenhuma unidade encontrada.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="9" class="td-muted">Nenhuma unidade encontrada.</td></tr>`;
       return;
     }
 
@@ -184,6 +184,7 @@
           <td>${badgeAtivo(u.ativo)}</td>
           <td>${escapeHtml(formatDateTime(u.criado_em))}</td>
           <td>${escapeHtml(formatDateTime(u.atualizado_em))}</td>
+          <td><button class="btn btn-danger btn-sm" data-id="${u.id}" data-action="delete">Excluir</button></td>
         </tr>
       `)
       .join("");
@@ -210,7 +211,7 @@
   async function loadUnidades() {
     tableMsg.textContent = "";
     subTotal.textContent = "Carregando...";
-    tbody.innerHTML = `<tr><td colspan="8" class="td-muted">Carregando...</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="9" class="td-muted">Carregando...</td></tr>`;
 
     try {
       await checkHealth();
@@ -227,12 +228,34 @@
       console.error(err);
       tableMsg.textContent = "Falha ao carregar unidades. Verifique se o backend está rodando e se a rota /api/unidades existe.";
       subTotal.textContent = "—";
-      tbody.innerHTML = `<tr><td colspan="6" class="td-muted">Erro ao carregar.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="9" class="td-muted">Erro ao carregar.</td></tr>`;
     }
   }
 
   searchInput.addEventListener("input", applyFilter);
   btnReload.addEventListener("click", loadUnidades);
+
+  // Handler para deletar unidade
+  tbody.addEventListener("click", async (e) => {
+    if (e.target.matches("button[data-action='delete']")) {
+      const id = e.target.dataset.id;
+      if (!confirm(`Tem certeza que deseja excluir a unidade ${id}?`)) return;
+
+      try {
+        const res = await fetch(`${UNIDADES_URL}/${id}`, { method: "DELETE" });
+        if (res.ok) {
+          alert("Unidade excluída com sucesso!");
+          loadUnidades(); // Recarregar lista
+        } else {
+          const data = await res.json();
+          alert(data.message || "Erro ao excluir unidade.");
+        }
+      } catch (err) {
+        console.error("Erro ao excluir unidade:", err);
+        alert("Erro de rede. Tente novamente.");
+      }
+    }
+  });
 
   loadSetores();
   loadUnidades();

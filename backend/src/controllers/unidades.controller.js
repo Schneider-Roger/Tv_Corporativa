@@ -53,7 +53,38 @@ async function criarUnidade(req, res) {
   }
 }
 
+async function deletarUnidade(req, res) {
+  try {
+    const { id } = req.params;
+    if (!id || isNaN(Number(id))) {
+      return res.status(400).json({
+        error: "VALIDACAO",
+        message: "ID inválido.",
+      });
+    }
+
+    const deleted = await unidadesService.deletarUnidade(Number(id));
+    if (!deleted) {
+      return res.status(404).json({ message: "Unidade não encontrada." });
+    }
+
+    return res.status(200).json({ message: "Unidade deletada com sucesso." });
+  } catch (err) {
+    console.error("Erro ao deletar unidade:", {
+      message: err?.message,
+      code: err?.code,
+      stack: err?.stack,
+    });
+
+    return res.status(500).json({
+      error: "ERRO_INTERNO",
+      message: "Falha ao deletar unidade.",
+    });
+  }
+}
+
 module.exports = {
   listarUnidades,
   criarUnidade,
+  deletarUnidade,
 };

@@ -257,3 +257,17 @@
     min-width: auto;
   }
 }
+
+/* Botões adicionais */
+.btn-danger {
+  background: rgba(255, 77, 79, 0.85);
+  color: #fff;
+}
+
+.btn-sm {
+  height: 36px;
+  padding: 0 10px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 12px;
+}
