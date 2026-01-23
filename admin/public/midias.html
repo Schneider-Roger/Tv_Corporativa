@@ -17,8 +17,18 @@
 
     <nav class="sidebar-nav">
       <a class="nav-link" href="dashboard.html">Dashboard</a>
-      <a class="nav-link" href="setores.html">Setores</a>
-      <a class="nav-link" href="unidades.html">Unidades</a>
+      
+      <!-- Menu expansível para Unidades e Setores -->
+      <div class="nav-group">
+        <button class="nav-link nav-toggle" id="toggleUnidades">
+          Unidades <span class="arrow">▶</span>
+        </button>
+        <div class="submenu" id="submenuUnidades">
+          <a class="nav-link submenu-link" href="unidades.html">Gerenciar Unidades</a>
+          <a class="nav-link submenu-link" href="setores.html">Gerenciar Setores</a>
+        </div>
+      </div>
+      
       <a class="nav-link active" href="midias.html">Mídias</a>
       <a class="nav-link" href="playlists.html">Playlists</a>
       <a class="nav-link" href="devices.html">Devices</a>

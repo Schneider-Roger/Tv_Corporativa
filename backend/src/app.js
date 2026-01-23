@@ -11,7 +11,7 @@ const setoresRoutes = require("./routes/setores.routes");
 const playlistsRoutes = require("./routes/playlists.routes");
 const devicesRoutes = require("./routes/devices.routes");
 const midiasRoutes = require("./routes/midias.routes");
-
+const unidadesRoutes = require("./routes/unidades.routes");  // Adicionado
 
 const app = express();
 
@@ -47,6 +47,8 @@ app.use("/api/health", healthRoutes);
 app.use("/api/setores", setoresRoutes);
 app.use("/api/playlists", playlistsRoutes);
 app.use("/api/devices", devicesRoutes);
+app.use("/api/midias", midiasRoutes);  // Adicionado
+app.use("/api/unidades", unidadesRoutes);  // Adicionado
 
 // 404 padrão
 app.use((req, res) => {

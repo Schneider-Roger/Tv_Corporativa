@@ -11,6 +11,22 @@
     window.location.href = "login.html";
   });
 
+  // Toggle do submenu de Unidades
+  const toggleBtn = document.getElementById('toggleUnidades');
+  const submenu = document.getElementById('submenuUnidades');
+  if (toggleBtn && submenu) {
+    toggleBtn.addEventListener('click', () => {
+      const isExpanded = submenu.classList.contains('expanded');
+      if (isExpanded) {
+        submenu.classList.remove('expanded');
+        toggleBtn.classList.remove('expanded');
+      } else {
+        submenu.classList.add('expanded');
+        toggleBtn.classList.add('expanded');
+      }
+    });
+  }
+
   const API_BASE = "http://localhost:3000";
   const endpoints = {
     health: `${API_BASE}/api/health`,
@@ -122,6 +138,25 @@
   }
 
   btnRefresh.addEventListener("click", load);
+
+  // Toggle do submenu de Unidades
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('toggleUnidades');
+    const submenu = document.getElementById('submenuUnidades');
+
+    if (toggleBtn && submenu) {
+      toggleBtn.addEventListener('click', () => {
+        const isExpanded = submenu.classList.contains('expanded');
+        if (isExpanded) {
+          submenu.classList.remove('expanded');
+          toggleBtn.classList.remove('expanded');
+        } else {
+          submenu.classList.add('expanded');
+          toggleBtn.classList.add('expanded');
+        }
+      });
+    }
+  });
 
   load();
 })();

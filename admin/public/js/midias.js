@@ -14,6 +14,22 @@
     window.location.href = "login.html";
   });
 
+  // Toggle do submenu de Unidades
+  const toggleBtn = document.getElementById('toggleUnidades');
+  const submenu = document.getElementById('submenuUnidades');
+  if (toggleBtn && submenu) {
+    toggleBtn.addEventListener('click', () => {
+      const isExpanded = submenu.classList.contains('expanded');
+      if (isExpanded) {
+        submenu.classList.remove('expanded');
+        toggleBtn.classList.remove('expanded');
+      } else {
+        submenu.classList.add('expanded');
+        toggleBtn.classList.add('expanded');
+      }
+    });
+  }
+
   const apiDot = document.getElementById("apiDot");
   const apiStatusText = document.getElementById("apiStatusText");
 
