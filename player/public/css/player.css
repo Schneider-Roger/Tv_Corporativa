@@ -1,6 +1,15 @@
+:root {
+  --color-primary: #aae137; /* Light green */
+  --color-secondary: #007800; /* Dark green */
+  --color-accent: #f09020; /* Orange */
+  --color-warning: #bfbf0f; /* Yellowish */
+  --color-muted: #404435; /* Dark gray-green */
+  --color-dark: #131313; /* Dark gray */
+}
+
 body {
   margin: 0;
-  background: black;
+  background: var(--color-dark);
   color: white;
   overflow: hidden;
 }
@@ -15,7 +24,7 @@ body {
   width: 25%;
   height: 90vh;
   float: right;
-  background: #111;
+  background: var(--color-muted);
 }
 
 #ticker {

@@ -79,12 +79,12 @@
 }
 
 .btn-primary {
-  background: #2f6bff;
+  background: var(--color-secondary);
   color: white;
 }
 
 .btn-primary:hover {
-  background: #1e5aff;
+  background: var(--color-primary);
 }
 
 .btn-primary:disabled {
@@ -260,7 +260,7 @@
 
 /* Botões adicionais */
 .btn-danger {
-  background: rgba(255, 77, 79, 0.85);
+  background: var(--color-accent);
   color: #fff;
 }
 
