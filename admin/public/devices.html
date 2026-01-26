@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/sidebar.css" />
   <link rel="stylesheet" href="css/devices.css" />
 </head>
 
@@ -21,16 +22,8 @@
     <nav class="sidebar-nav">
       <a href="dashboard.html" class="nav-link">Dashboard</a>
       
-      <!-- Menu expansível para Unidades e Setores -->
-      <div class="nav-group">
-        <button class="nav-link nav-toggle" id="toggleUnidades">
-          Unidades <span class="arrow">▶</span>
-        </button>
-        <div class="submenu" id="submenuUnidades">
-          <a class="nav-link submenu-link" href="unidades.html">Gerenciar Unidades</a>
-          <a class="nav-link submenu-link" href="setores.html">Gerenciar Setores</a>
-        </div>
-      </div>
+      <a class="nav-link" href="unidades.html">Gerenciar Unidades</a>
+      <a class="nav-link" href="setores.html">Gerenciar Setores</a>
       
       <a href="midias.html" class="nav-link">Mídias</a>
       <a href="playlists.html" class="nav-link">Playlists</a>

@@ -1,0 +1,28 @@
+/* BOTÕES DO MENU */
+.nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 30px;
+  border-radius: 10px;
+
+  text-decoration: none;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  background-color: #aae137;
+}
+
+.nav-link.active {
+  background: #007800;
+  color: #fff;
+}

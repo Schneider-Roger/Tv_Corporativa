@@ -3,20 +3,20 @@
 ========================= */
 
 :root {
-  --bg: #0b1220;
-  --card: #101a2f;
+  --bg: rgba(255, 255, 255, 0.92);
+  --card: var( --color-secondary);
   --border: rgba(255, 255, 255, 0.08);
   --text: rgba(255, 255, 255, 0.92);
   --muted: rgba(255, 255, 255, 0.65);
-  --primary: #2f6bff;
-  --danger: #ff4d4f;
-  --ok: #2ecc71;
+  --primary: var(--color-primary);
+  --danger: var(--color-accent);
+  --ok: var(--color-primary);
 }
 
 .auth-body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: radial-gradient(900px 600px at 20% 10%, #172442, var(--bg));
+  background: var(--bg);
   color: var(--text);
 }
 
@@ -30,8 +30,8 @@
 .auth-card {
   width: 100%;
   max-width: 420px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-  border: 1px solid var(--border);
+  background: var(--card);
+  border: 10px solid var(--border);
   border-radius: 16px;
   padding: 22px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.35);
@@ -80,7 +80,7 @@
 }
 
 .form-input:focus {
-  border-color: rgba(47, 107, 255, 0.7);
+  border-color: #aae137;
   box-shadow: 0 0 0 4px rgba(47, 107, 255, 0.15);
 }
 
@@ -93,7 +93,7 @@
 }
 
 .btn-primary {
-  background: var(--primary);
+  background: #aae137;
   color: #fff;
 }
 
@@ -105,19 +105,19 @@
 .form-msg {
   min-height: 18px;
   font-size: 13px;
-  color: var(--muted);
+  color: #fff;
 }
 
 .form-msg.error {
-  color: var(--danger);
+  color: #fff;
 }
 
 .form-msg.ok {
-  color: var(--ok);
+  color: #fff;
 }
 
 .auth-footer {
   margin-top: 14px;
-  color: var(--muted);
+  color: #fff;
   text-align: center;
 }
