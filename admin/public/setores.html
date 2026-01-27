@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin • Setores</title>
-  <link rel="stylesheet" href="css/dashboard.css" />
+
+  <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/sidebar.css" />
   <link rel="stylesheet" href="css/setores.css" />
 </head>
@@ -18,10 +19,10 @@
 
     <nav class="sidebar-nav">
       <a class="nav-link" href="dashboard.html">Dashboard</a>
-      
+
       <a class="nav-link" href="unidades.html">Gerenciar Unidades</a>
       <a class="nav-link active" href="setores.html">Gerenciar Setores</a>
-      
+
       <a class="nav-link" href="midias.html">Mídias</a>
       <a class="nav-link" href="playlists.html">Playlists</a>
       <a class="nav-link" href="devices.html">Devices</a>
@@ -49,6 +50,64 @@
     </header>
 
     <main class="content">
+
+      <!-- CARD: CRIAÇÃO (igual Unidades) -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-title">Novo setor</div>
+        </div>
+
+        <form id="formCreate" class="form-grid">
+          <div class="form-group">
+            <label for="nome" class="form-label">Nome *</label>
+            <input
+              id="nome"
+              name="nome"
+              type="text"
+              class="form-input"
+              placeholder="Ex: Tecnologia da Informação"
+              required
+              maxlength="255"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="descricao" class="form-label">Descrição</label>
+            <input
+              id="descricao"
+              name="descricao"
+              type="text"
+              class="form-input"
+              placeholder="Ex: Suporte, infraestrutura, sistemas..."
+              maxlength="255"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Ativo</label>
+            <div class="form-radio-group">
+              <label class="form-radio">
+                <input type="radio" name="ativo" value="1" checked />
+                <span>Sim</span>
+              </label>
+              <label class="form-radio">
+                <input type="radio" name="ativo" value="0" />
+                <span>Não</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button id="btnCreate" type="submit" class="btn btn-primary">
+              Criar Setor
+            </button>
+          </div>
+        </form>
+
+        <div id="createMsg" class="form-msg" aria-live="polite"></div>
+      </section>
+
+      <!-- CARD: LISTAGEM (igual Unidades) -->
       <section class="card">
         <div class="card-header">
           <div>
@@ -78,11 +137,12 @@
                 <th style="width: 110px;">Ativo</th>
                 <th style="width: 180px;">Criado em</th>
                 <th style="width: 180px;">Atualizado em</th>
+                <th style="width: 120px;"></th>
               </tr>
             </thead>
             <tbody id="tbodySetores">
               <tr>
-                <td colspan="6" class="td-muted">Carregando...</td>
+                <td colspan="7" class="td-muted">Carregando...</td>
               </tr>
             </tbody>
           </table>
@@ -90,6 +150,7 @@
 
         <div id="tableMsg" class="table-msg" aria-live="polite"></div>
       </section>
+
     </main>
   </div>
 

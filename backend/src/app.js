@@ -39,16 +39,17 @@ app.use(express.json({ limit: `${env.MAX_UPLOAD_MB}mb` }));
 // Servir uploads (mídias)
 app.use("/uploads", express.static(path.resolve(process.cwd(), env.UPLOAD_DIR)));
 
-// Servir arquivos estáticos do admin
-app.use(express.static(path.join(__dirname, '../../admin/public')));
 
 // Rotas
 app.use("/api/health", healthRoutes);
 app.use("/api/setores", setoresRoutes);
 app.use("/api/playlists", playlistsRoutes);
 app.use("/api/devices", devicesRoutes);
-app.use("/api/midias", midiasRoutes);  // Adicionado
-app.use("/api/unidades", unidadesRoutes);  // Adicionado
+app.use("/api/midias", midiasRoutes);
+app.use("/api/unidades", unidadesRoutes);
+
+// Servir arquivos estáticos do admin (depois das rotas da API)
+app.use(express.static(path.join(__dirname, '../../admin/public')));
 
 // 404 padrão
 app.use((req, res) => {

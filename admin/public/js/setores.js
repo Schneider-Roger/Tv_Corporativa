@@ -48,6 +48,40 @@
   const HEALTH_URL = `${API_BASE}/api/health`;
   const SETORES_URL = `${API_BASE}/api/setores`;
 
+  // Formulário de criação de setor
+  const formCreate = document.getElementById("formCreate");
+  const createMsg = document.getElementById("createMsg");
+  if (formCreate) {
+    formCreate.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      createMsg.textContent = "";
+      const formData = new FormData(formCreate);
+      const nome = formData.get("nome");
+      const descricao = formData.get("descricao");
+      const ativo = formData.get("ativo") === "1" ? 1 : 0;
+      try {
+        const res = await fetch(SETORES_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nome, descricao, ativo })
+        });
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          createMsg.textContent = err.message || `Erro ao criar setor (HTTP ${res.status})`;
+          createMsg.className = "form-msg form-msg-err";
+          return;
+        }
+        createMsg.textContent = "Setor criado com sucesso!";
+        createMsg.className = "form-msg form-msg-ok";
+        formCreate.reset();
+        loadSetores();
+      } catch (err) {
+        createMsg.textContent = "Erro de rede ao criar setor.";
+        createMsg.className = "form-msg form-msg-err";
+      }
+    });
+  }
+
   let setoresCache = [];
 
   function setApiStatus(ok) {
@@ -88,7 +122,7 @@
 
   function renderRows(rows) {
     if (!rows.length) {
-      tbody.innerHTML = `<tr><td colspan="6" class="td-muted">Nenhum setor encontrado.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="7" class="td-muted">Nenhum setor encontrado.</td></tr>`;
       return;
     }
 
@@ -102,10 +136,34 @@
             <td>${badgeAtivo(s.ativo)}</td>
             <td>${escapeHtml(formatDateTime(s.criado_em))}</td>
             <td>${escapeHtml(formatDateTime(s.atualizado_em))}</td>
+            <td><button class="btn btn-danger btn-sm btn-excluir-setor" data-id="${escapeHtml(s.id)}">Excluir</button></td>
           </tr>
         `;
       })
       .join("");
+
+    // Adiciona evento aos botões de exclusão
+    document.querySelectorAll('.btn-excluir-setor').forEach(btn => {
+      btn.addEventListener('click', async function () {
+        const id = this.getAttribute('data-id');
+        if (!id || !confirm('Deseja realmente excluir este setor?')) return;
+        try {
+          const res = await fetch(`${SETORES_URL}/${id}`, { method: 'DELETE' });
+          if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            tableMsg.textContent = err.message || `Erro ao excluir setor (HTTP ${res.status})`;
+            tableMsg.className = "table-msg table-msg-err";
+            return;
+          }
+          tableMsg.textContent = "Setor excluído com sucesso.";
+          tableMsg.className = "table-msg table-msg-ok";
+          loadSetores();
+        } catch (err) {
+          tableMsg.textContent = "Erro de rede ao excluir setor.";
+          tableMsg.className = "table-msg table-msg-err";
+        }
+      });
+    });
   }
 
   function applyFilter() {

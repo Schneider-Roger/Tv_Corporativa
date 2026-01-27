@@ -79,11 +79,19 @@ async function upload(req, res) {
 }
 
 async function remover(req, res) {
+  
   try {
     const filename = req.params.filename;
     await midiasService.remover(filename);
     return res.status(200).json({ ok: true });
   } catch (err) {
+    if (err && err.code === "INVALID_FILENAME") {
+    return res.status(400).json({
+      error: "INVALID_FILENAME",
+      message: "Nome de arquivo inválido.",
+    });
+  }
+
     if (err && err.code === "NOT_FOUND") {
       return res.status(404).json({
         error: "NOT_FOUND",
